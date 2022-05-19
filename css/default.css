@@ -11689,3 +11689,22 @@ figure.highlight.foldable div.level-left {
     padding: 1.5rem 1rem;
   }
 }
+.link-area {
+  box-shadow: 0 8px 10px 1px rgba(0,0,0,0.14), 0 3px 14px 2px rgba(0,0,0,0.12), 0 5px 5px -3px rgba(0,0,0,0.2);
+  margin: 1rem 0rem 1rem 0rem;
+  padding: 1rem 1rem 1rem 1rem;
+}
+.link-area .og-image {
+  width: 20%;
+  float: left;
+}
+.link-area .descriptions {
+  margin-left: 25%;
+}
+.link-area .descriptions .og-title {
+  font-weight: bold;
+}
+.link-area .descriptions .og-description {
+  margin: 1rem 0rem 0rem 0rem;
+  font-size: 80%;
+}
