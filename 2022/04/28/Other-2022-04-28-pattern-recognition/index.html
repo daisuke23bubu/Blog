@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>【メモ】パターン認識 - Daisuke23 Blog</title><link rel="manifest" href="/Blog/manifest.json"><meta name="application-name" content="Daisuke23 Blog"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Daisuke23 Blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="パターン認識の概念"><meta property="og:type" content="blog"><meta property="og:title" content="【メモ】パターン認識"><meta property="og:url" content="https://daisuke23bubu.github.io/Blog/2022/04/28/Other-2022-04-28-pattern-recognition/"><meta property="og:site_name" content="Daisuke23 Blog"><meta property="og:description" content="パターン認識の概念"><meta property="og:locale" content="ja_JP"><meta property="og:image" content="https://daisuke23bubu.github.io/Blog/img/og_image.png"><meta property="article:published_time" content="2022-04-27T15:00:00.000Z"><meta property="article:modified_time" content="2022-05-18T10:21:21.215Z"><meta property="article:author" content="Daisuke23"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/Blog/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://daisuke23bubu.github.io/Blog/2022/04/28/Other-2022-04-28-pattern-recognition/"},"headline":"【メモ】パターン認識","image":["https://daisuke23bubu.github.io/Blog/img/og_image.png"],"datePublished":"2022-04-27T15:00:00.000Z","dateModified":"2022-05-18T10:21:21.215Z","author":{"@type":"Person","name":"Daisuke23"},"publisher":{"@type":"Organization","name":"Daisuke23 Blog","logo":{"@type":"ImageObject","url":{"text":"Daisuke23"}}},"description":"パターン認識の概念"}</script><link rel="canonical" href="https://daisuke23bubu.github.io/Blog/2022/04/28/Other-2022-04-28-pattern-recognition/"><link rel="icon" href="/Blog/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/Blog/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+          Array
+              .from(document.querySelectorAll('.tab-content'))
+              .forEach($tab => {
+                  $tab.classList.add('is-hidden');
+              });
+          Array
+              .from(document.querySelectorAll('.tabs li'))
+              .forEach($tab => {
+                  $tab.classList.remove('is-active');
+              });
+          const $activeTab = document.querySelector(location.hash);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+          const $tabMenu = document.querySelector(`a[href="${location.hash}"]`);
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/Blog/">Daisuke23</a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/Blog/">Home</a><a class="navbar-item" href="/Blog/archives">Archives</a><a class="navbar-item" href="/Blog/categories">Categories</a><a class="navbar-item" href="/Blog/tags">Tags</a></div><div class="navbar-end"><a class="navbar-item search" title="検索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-04-27T15:00:00.000Z" title="2022/4/28 0:00:00">2022-04-28</time>に投稿</span><span class="level-item"><time dateTime="2022-05-18T10:21:21.215Z" title="2022/5/18 19:21:21">2022-05-18</time>に更新</span><span class="level-item"><a class="link-muted" href="/Blog/categories/Other/">Other</a></span><span class="level-item">4分で読む (約535語)</span></div></div><h1 class="title is-3 is-size-4-mobile has-text-weight-semibold">【メモ】パターン認識</h1><div class="content"><h1><span id="パターン認識">パターン認識</span></h1><p><code>観測されたパターンを複数のクラスのうちのどのクラスか決める処理</code>のこと！<br>ここで <strong>クラス&#x3D;概念</strong> ということ．</p>
+<h1><span id="識別辞書構成法">識別辞書構成法</span></h1><p>起こりうる全てのパターンを記憶！（理想的な方法）</p>
+<ul>
+<li>入力</li>
+<li>前処理（ノイズ除去・正規化）</li>
+<li>特徴抽出</li>
+<li>識別部（識別辞書・識別演算）</li>
+<li>出力</li>
+</ul>
+<p><strong>特徴抽出</strong><br>特徴は一般にベクトルで表す＝特徴ベクトル<br>特徴ベクトルが張られる空間＝特徴空間</p>
+<p>空間上の同一クラスのパターンの塊＝クラスタ</p>
+<p>どのクラスにも属さないパターンは<strong>reject</strong>される  </p>
+<p>全パターンそれぞれにクラスを割り振らなければならない<br>-&gt;めちゃくちゃ時間かかる，非現実的<br>起きる全てのパターンを記憶しておくのだから理想的な方法ではあるが，，，<br>時間がかかりすぎて無理！</p>
+<h1><span id="最近傍決定則-nn法nearest-neighbor-rule">最近傍決定則- NN法（nearest neighbor rule）</span></h1><p><strong>ユークリッド距離</strong>を用いる<br>特徴空間上で近いものは似てるでしょ！という仮定</p>
+<!--
+k-NN法
+=
+入力したパターンに近いk個のプロトタイプから多数決で多かったクラスを出力
+
+一を聞いて十を知るという識別方法だ！  
+クラス間を分離する境界を決定境界
+多次元では＝超平面！
+
+学習＝プロトタイプの正しい位置を自動できめてやる  
+プロトタイプで特徴空間を分割！＝学習
+
+
+各クラスに入力パターンの属するクラスを判定する関数（識別関数）を割り当てる＝識別関数法
+
+パーセプトロン＝識別関数の出力の線形和の最大値選択
+-->
+
+</div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/Blog/2022/04/30/Ruby-2022-04-30-Sinatra-MVC/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">【Ruby】Sinatra MVC</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/Blog/2022/04/25/Ruby-2022-04-25-Ruby-Command/"><span class="level-item">【Ruby】Ruby文法</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/Blog/img/avatar.png" alt="Daisuke23"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Daisuke23</p><p class="is-size-6 is-block">情報系の修士1年生です</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>大阪府ひらパー市</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">投稿</p><a href="/Blog/archives"><p class="title">10</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">カテゴリ</p><a href="/Blog/categories"><p class="title">6</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">タグ</p><a href="/Blog/tags"><p class="title">8</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/ppoffice" target="_blank" rel="noopener">フォローする</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/daisuke23bubu"><i class="fab fa-github"></i></a></div></div></div><!--!--><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">カテゴリ</h3><ul class="menu-list"><li><a class="level is-mobile" href="/Blog/categories/Algorithm/"><span class="level-start"><span class="level-item">Algorithm</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/Blog/categories/GitHub/"><span class="level-start"><span class="level-item">GitHub</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/Blog/categories/Linux/"><span class="level-start"><span class="level-item">Linux</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/Blog/categories/Other/"><span class="level-start"><span class="level-item">Other</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/Blog/categories/Python/"><span class="level-start"><span class="level-item">Python</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/Blog/categories/Ruby/"><span class="level-start"><span class="level-item">Ruby</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最近の記事</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-05-30T16:19:14.000Z">2022-05-31</time></p><p class="title"><a href="/Blog/2022/05/31/Python-2022-05-31-aoj-itp1/">【Python】AOJ「ITP1」をやってみる</a></p><p class="categories"><a href="/Blog/categories/Python/">Python</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-05-19T16:04:13.000Z">2022-05-20</time></p><p class="title"><a href="/Blog/2022/05/20/GitHub-2022-05-20-git-ssh/">【GitHub】SSHを使えるようにした</a></p><p class="categories"><a href="/Blog/categories/GitHub/">GitHub</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-05-19T04:49:35.000Z">2022-05-19</time></p><p class="title"><a href="/Blog/2022/05/19/Other-2022-05-19-logo-design/">【デザイン】ロゴ＆デザイン参考サイト</a></p><p class="categories"><a href="/Blog/categories/Other/">Other</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-05-17T16:26:31.000Z">2022-05-18</time></p><p class="title"><a href="/Blog/2022/05/18/Algorithm-2022-05-18-Genetic-Algorithm/">【アルゴリズム】遺伝的アルゴリズムやってみた</a></p><p class="categories"><a href="/Blog/categories/Algorithm/">Algorithm</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-05-14T18:49:30.000Z">2022-05-15</time></p><p class="title"><a href="/Blog/2022/05/15/Ruby-2022-05-15-Sinatra-review/">【Ruby】Sinatra振り返り</a></p><p class="categories"><a href="/Blog/categories/Ruby/">Ruby</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">アーカイブ</h3><ul class="menu-list"><li><a class="level is-mobile" href="/Blog/archives/2022/05/"><span class="level-start"><span class="level-item">2022 / 05</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/Blog/archives/2022/04/"><span class="level-start"><span class="level-item">2022 / 04</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">タグ</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/Blog/tags/Algorithm/"><span class="tag">Algorithm</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/Blog/tags/Command/"><span class="tag">Command</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/Blog/tags/GitHub/"><span class="tag">GitHub</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/Blog/tags/Linux/"><span class="tag">Linux</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/Blog/tags/Python/"><span class="tag">Python</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/Blog/tags/Ruby/"><span class="tag">Ruby</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/Blog/tags/Sinatra/"><span class="tag">Sinatra</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/Blog/tags/myself/"><span class="tag">myself</span><span class="tag">1</span></a></div></div></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/Blog/">Daisuke23</a><p class="is-size-7"><span>&copy; 2022 Daisuke23</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/daisuke23bubu"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("ja");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/Blog/js/column.js"></script><script src="/Blog/js/animation.js"></script><a id="back-to-top" title="トップに戻る" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/Blog/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "このウェブサイトはあなたの経験を改善するためにCookieを使用しています。",
+          dismiss: "了解しました",
+          allow: "Cookiesを許可する",
+          deny: "拒否する",
+          link: "もっと詳しく知る",
+          policy: "Cookieポリシー",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/Blog/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="何かを入力してください..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/Blog/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/Blog/content.json"}, {"hint":"何かを入力してください...","untitled":"(無題)","posts":"投稿","pages":"ページ","categories":"カテゴリ","tags":"タグ"});
+        });</script></body></html>
